@@ -41,18 +41,46 @@ $(document).ready(function(){
     }
     $.fn.placeholder();
 
-    // $(".b-step-slider").slick({
-    //     dots: true,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     infinite: true,
-    //     cssEase: 'ease', 
-    //     speed: 500,
-    //     arrows: true,
-    //     prevArrow: '<button type="button" class="slick-prev slick-arrow icon-arrow-left"></button>',
-    //     nextArrow: '<button type="button" class="slick-next slick-arrow icon-arrow-right"></button>',
-    //     touchThreshold: 100
-    // });
+    $(".b-main-block").slick({
+        dots: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        cssEase: 'ease', 
+        speed: 500,
+        arrows: false,
+        touchThreshold: 100
+    });
+
+    $(".b-go").click(function(){
+        var block = $( $(this).attr("data-block") ),
+            off = $(this).attr("data-offset")||0,
+            duration = $(this).attr("data-duration")||800;
+        $("body, html").animate({
+            scrollTop : block.offset().top-off
+        },duration);
+        return false;
+    });
+
+    var menuHeight = $('.b-menu-hidden-container').height();
+    $('.b-menu-hidden-container').addClass('close');
+
+    var projectHeight = $('.b-4-hidden-list').height();
+    $('.b-4-hidden-list').addClass('close');
+
+    $('.b-3 .b-btn').click(function(){
+        $(this).parents('.b-text').find('.b-menu-hidden-container').css('height', menuHeight);
+        $(this).css('opacity', '0');
+        $(this).css('visibility', 'hidden');
+        return false;
+    })
+
+    $('.b-4 .b-btn').click(function(){
+        $(this).parents('.b-4').find('.b-4-hidden-list').css('height', projectHeight);
+        $(this).css('opacity', '0');
+        $(this).css('visibility', 'hidden');
+        return false;
+    })
 
     // // Первая анимация элементов в слайде
     // $(".b-step-slide[data-slick-index='0'] .slider-anim").addClass("show");
